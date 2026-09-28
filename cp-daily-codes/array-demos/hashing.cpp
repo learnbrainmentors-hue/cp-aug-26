@@ -2,11 +2,13 @@
 using namespace std;
 int main()
 {
+
     string a = "abcdabc";
     int hash[26] = {}; // 26 chars
     // cout << a[0] << endl;
     // cout << (int)a[0] << endl;
     // cout << a[1] - a[0] << endl;
+    // Hashing - Key (index) + value (Count)
     for (int i = 0; i < a.size(); i++)
     {
         int index = a[i] - 'a';
