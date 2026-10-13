@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
+        long long sum = 0;
+        int count = 0;
+        // Step - 1Inital Window Sum Average
+        for(int right = 0 ; right<k ; right++){
+            sum = sum + arr[right];
+        }
+        if(sum / k >=threshold){
+            count++;
+        }
+        // Step - 2 Sliding window
+        for(int right = k ; right<arr.size(); right++){
+            int left = arr[right-k];
+            sum  = sum -left + arr[right];
+            if(sum / k>=threshold){
+                count++;
+            }
+        }
+        return count;
+    }
+};
