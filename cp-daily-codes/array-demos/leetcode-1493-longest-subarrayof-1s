@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+        // I will look in my Gali (for all on bulbs) - In my window
+        // Grow
+        int left = 0;
+        int count = 0; // off bulb count karta hu
+        int maxGali = 0;
+        for(int right = 0 ; right<nums.size(); right++){
+            if(nums[right] == 0){
+                // gali mein off bulb hai
+                count++;
+            }
+            // shrink gali
+            while(count>1){
+                if(nums[left] == 0){
+                    count--;
+                }
+                left++; // gali shrink
+            }
+            // int lenOfGali = right - left +  1;
+            //  lenOfGali = lenOfGali - 1;
+            int lenOfGali = right - left;
+            maxGali = max(maxGali, lenOfGali);
+        }
+        return maxGali;
+    }
+};
