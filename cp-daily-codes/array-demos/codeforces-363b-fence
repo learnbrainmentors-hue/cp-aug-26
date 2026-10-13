@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+    int n, k;
+    cin>>n>>k;
+    vector<int> v(n);
+    for(int i = 0 ; i<n; i++){
+        cin>>v[i];
+    }
+    long long sum = 0;
+    // first group plank (sum )
+    for(int right = 0; right<k ; right++){
+        sum  = sum + v[right];
+    }
+    long long minSum = sum;
+    int minIndex =0;
+    // next group sum (right value add it and left value remove it)
+    for(int right = k ; right< n; right++){
+        int left = v[right - k];
+        sum = sum - left + v[right];
+        if(sum < minSum){
+            minSum = sum;
+            minIndex = right - k + 1; 
+ 
+        }
+    }
+    cout<<minIndex + 1 <<endl;
+    return 0;
+}
