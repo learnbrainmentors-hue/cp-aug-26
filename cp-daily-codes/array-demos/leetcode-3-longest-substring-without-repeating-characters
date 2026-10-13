@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left = 0;
+        // for hashing - to rem snake eat already this food
+        vector<int> hash (256,0); // ascii hashing (snake food)
+        int maxLen = 0;
+        // grow the snake
+        for(int right = 0; right<s.length(); right++){
+            // snake eat food and we store in hash to rem
+            hash[s[right]]++;
+            // snake shrink if eat duplicate
+            while(hash[s[right]]>1){
+                hash[s[left]]--;
+                left++;
+            }    
+
+            int len  = right - left + 1;
+            maxLen = max(maxLen, len);
+
+
+        }
+        return maxLen;
+
+    }
+};
