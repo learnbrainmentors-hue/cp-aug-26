@@ -1,0 +1,47 @@
+class Solution {
+    int firstIndex(vector<int>& nums, int target){
+            // if target found so keep looking in left hand side 
+            int low = 0;
+            int high = nums.size()-1;
+            int index = -1;
+            while(low<=high){
+                int mid = low + (high -low)/2;
+                if(nums[mid] == target){
+                    index = mid; // note down the index (found)
+                    high = mid - 1; // keep continue to search (on left) for first index
+                }
+                else if(nums[mid] < target){
+                    low = mid + 1; // answer may be on right
+                }
+                else{
+                    high = mid - 1; // answer may be on left
+                }
+            }
+            return index; // first index
+
+    }
+    int lastIndex(vector<int>& nums, int target){
+         // if target found so keep looking in right hand side 
+          int low = 0;
+            int high = nums.size()-1;
+            int index = -1;
+            while(low<=high){
+                int mid = low + (high -low)/2;
+                if(nums[mid] == target){
+                    index = mid; // note down the index (found)
+                    low = mid + 1; // keep continue to search (on right) for last index
+                }
+                else if(nums[mid] < target){
+                    low = mid + 1; // answer may be on right
+                }
+                else{
+                    high = mid - 1; // answer may be on left
+                }
+            }
+            return index; // last index
+    }
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        return { firstIndex(nums, target), lastIndex(nums, target)};
+    }
+};
