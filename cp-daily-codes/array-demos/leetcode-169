@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int king = 0;
+        int voteCount = 0;
+        for(int n : nums){
+            if(voteCount == 0){
+                king = n;
+            }
+            if(king == n){
+                voteCount++;
+            }
+            else{
+                voteCount--;
+            }
+        }
+        return king;
+    }
+};
